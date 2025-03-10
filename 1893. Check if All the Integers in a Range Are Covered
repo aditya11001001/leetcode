@@ -1,0 +1,19 @@
+public boolean isCovered(int[][] ranges, int left, int right) {
+        for(int i=left; i<=right; i++){
+            int j=0;
+            
+            while(j<ranges.length){
+                int leftVal=ranges[j][0];
+                int rightVal=ranges[j][1];
+                if(i>=leftVal && i<=rightVal){
+                    break;
+                }else{
+                    if(j == ranges.length-1){
+                        return false;
+                    }
+                    j++;
+                }
+            }
+        }
+        return true;
+    }
