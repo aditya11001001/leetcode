@@ -1,0 +1,34 @@
+class Solution {
+    public int searchInsert(int[] nums, int target) {
+        int low = 0;
+        int high = nums.length-1;
+        int idx = -1;
+        int closest = Integer.MAX_VALUE;
+        while (low<=high){
+            int mid = (low + high)/2;
+            if(nums[mid]==target){
+                return mid;
+            }else if(nums[mid]>target){
+                int val = Math.abs(target-nums[mid]);
+                if(val<closest){
+                    idx = mid;
+                    closest = val;
+                }
+                high = mid-1;
+            }else{
+                int val = Math.abs(target-nums[mid]);
+                if(val<closest){
+                    idx = mid;
+                    closest = val;
+                }
+                low = mid+1;
+            }
+        }
+        if(nums[idx]>target){
+            return idx;
+        }else if(nums[idx]<target){ 
+            return idx + 1;
+        }
+        return -1;
+    } 
+}
