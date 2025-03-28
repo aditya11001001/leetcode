@@ -1,0 +1,16 @@
+class Solution {
+    public int countGoodSubstrings(String s) {
+        int count=0;
+        int left = 0;
+        int right = 2;
+        while(right<s.length()){
+            char one = s.charAt(left);
+            char two = s.charAt(left+1);
+            char three = s.charAt(right);
+            if(one != two && two != three && one != three) count++;
+            left++;
+            right++;
+        }
+        return count;
+    }
+}
