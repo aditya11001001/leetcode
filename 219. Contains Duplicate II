@@ -1,0 +1,29 @@
+class Solution {
+    public boolean containsNearbyDuplicate(int[] nums, int k) {
+        int left = 0;
+        int right = left+k;
+        int n = nums.length;
+        HashSet<Integer> set = new HashSet<>();
+
+        for(int i = 0; i<=right; i++){
+            if(i>=n)break;
+            if(set.contains(nums[i])){
+                return true;
+            }else{
+                set.add(nums[i]);
+            }
+        }
+
+        while(right+1<n){
+            set.remove(nums[left]);
+            if(set.contains(nums[right+1])){
+                return true;
+            }else{
+                set.add(nums[right+1]);
+            }
+            right++;
+            left++;
+        }
+        return false;
+    }
+}
