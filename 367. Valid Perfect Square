@@ -1,0 +1,21 @@
+class Solution {
+    public boolean isPerfectSquare(int num) {
+        int high = num / 2;
+    int low = 0;
+    if (num == 1) {
+        return true;
+    }
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+        long val = (long)mid * mid; // Cast to long to avoid potential overflow here too!
+        if (val == num) {
+            return true;
+        } else if (val > num) {
+            high = mid - 1;
+        } else {
+            low = mid + 1;
+        }
+    }
+    return false;
+    }
+}
