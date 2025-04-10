@@ -1,0 +1,33 @@
+class Solution {
+    public String removeOuterParentheses(String s) {
+        int n = s.length();
+        Stack<Character> stk = new Stack<>();
+        int first = 0;
+        int last = 1;
+        String result = "";
+        stk.push(s.charAt(first));
+
+        while(first<n){
+            char ch = s.charAt(last);
+            if(stk.peek()!=ch){
+                stk.pop();
+            }else{
+                stk.push(ch);
+            }
+            if(stk.isEmpty()){
+                if(first+1 != last){
+                    String str = s.substring(first+1,last);
+                    result+= str;
+                }
+                first = last + 1;
+                last = first + 1;
+                if(first<n){
+                    stk.push(s.charAt(first));
+                }
+            }else{
+                last++;
+            }
+        }
+        return result;
+    }
+}
