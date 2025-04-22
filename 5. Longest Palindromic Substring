@@ -1,0 +1,24 @@
+class Solution {
+    public boolean isPalindrome(String str){
+        int n = str.length();
+        for(int i=0; i<n/2; i++){
+            if(str.charAt(i)!=str.charAt(n-1-i)) return false;
+        }
+        return true;
+    }
+    public String longestPalindrome(String s) {
+        int n = s.length();
+        String res = "";
+        for(int i=0; i<n; i++){
+            for(int j=i+1; j<=n; j++){
+                String str = s.substring(i, j);
+                if(isPalindrome(str)){
+                    if(res.length()<str.length()){
+                        res = str;
+                    }
+                }
+            }
+        }
+        return res;
+    }
+}
