@@ -1,0 +1,31 @@
+class Solution {
+    public int cheakBeauty(String str){
+        int[] arr = new int[26];
+        int n = str.length();
+        for(int i=0; i<n; i++){
+            char ch = str.charAt(i);
+            arr[ch-'a']++;
+        }
+        int max = 0;
+        int min = Integer.MAX_VALUE;
+        for(int i=0; i<26; i++){
+            if(arr[i]!=0){
+                max = Math.max(max, arr[i]);
+                min = Math.min(min, arr[i]);
+            }
+        }
+        return max-min;
+    }
+    public int beautySum(String s) {
+        int score = 0;
+        int n = s.length();
+        for(int i=0; i<n; i++){
+            for(int j=i+1; j<=n; j++){
+                String str = s.substring(i, j);
+                int num = cheakBeauty(str);
+                score += num;
+            }
+        }
+        return score;
+    }
+}
