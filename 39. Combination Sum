@@ -1,0 +1,25 @@
+class Solution {
+    public List<List<Integer>> sum(List<List<Integer>> list, List<Integer> li, int[] arr, int idx, int target, int sum){
+        if(target==sum){
+            list.add(new ArrayList<>(li));
+            return list;
+        }
+        if(idx>=arr.length || sum>target ) return list;
+
+        li.add(arr[idx]);
+        sum+=arr[idx];
+        sum(list, li, arr, idx, target, sum);
+        li.remove(li.size() - 1);
+        sum-=arr[idx];
+        sum(list, li, arr, idx+1, target, sum);
+
+        return list;
+    }
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> list = new ArrayList<>();
+        List<Integer> li = new ArrayList<>();
+        int sum = 0;
+
+        return sum(list, li, candidates, 0, target, sum);
+    }
+}
