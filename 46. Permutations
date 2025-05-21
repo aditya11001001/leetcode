@@ -1,0 +1,26 @@
+class Solution {
+    public List<List<Integer>> helper(int[] nums, int idx, List<Integer> li, List<List<Integer>> list){
+        if(idx>=nums.length){
+            list.add(new ArrayList<>(li));
+            return list;
+        }
+        for(int i=idx; i<nums.length; i++){
+            int temp = nums[idx];
+            nums[idx] = nums[i];
+            nums[i] = temp;
+            li.add(nums[idx]);
+            helper(nums, idx+1, li, list);
+            li.remove(li.size()-1);
+            temp = nums[idx];
+            nums[idx] = nums[i];
+            nums[i] = temp;
+        }
+        return list;
+    }
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> list = new ArrayList<>();
+        List<Integer> li = new ArrayList<>();
+
+        return helper(nums, 0, li, list);
+    }
+}
