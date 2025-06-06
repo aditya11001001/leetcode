@@ -1,0 +1,44 @@
+class Solution {
+    public boolean cheak(int[] arr,int m, int k, int days){
+        int n = arr.length;
+        int tempK = k;
+        int idx = 0;
+
+        while(m!=0 && idx<n){
+            if(arr[idx]<=days){
+                tempK--;
+            }else{
+                tempK = k;
+            }
+            if(tempK==0){
+                m--;
+                tempK = k;
+            }
+            idx++;
+        }
+        return (m==0);
+    }
+    public int minDays(int[] bloomDay, int m, int k) {
+        int n = bloomDay.length;
+        int result = -1;
+        int low = bloomDay[0];
+        int high = bloomDay[0];
+        if(m*k>n) return -1;
+
+        for(int i=1; i<n; i++){
+            low = Math.min(low, bloomDay[i]);
+            high = Math.max(high, bloomDay[i]);
+        }
+
+        while(low<=high){
+            int days = (low + high)/2;
+            if(cheak(bloomDay, m, k, days)){
+                result = days;
+                high = days-1;
+            }else{
+                low = days+1;
+            }
+        }
+        return result;
+    }
+}
