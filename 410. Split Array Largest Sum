@@ -1,0 +1,37 @@
+class Solution {
+    public int cheak(int[] nums, int sum){
+        int splits = 1;
+        int size = 0;
+
+        for(int ele: nums){
+            if(size + ele <= sum){
+                size += ele;
+            }else{
+                splits++;
+                size = ele;
+            }
+        }
+        return splits;
+    }
+    public int splitArray(int[] nums, int k) {
+        int low = 0;
+        int high = 0;
+        for(int ele: nums){
+            low = Math.max(low, ele);
+            high += ele;
+        }
+        int res = high;
+
+        while(low<=high){
+            int mid = (low+high)/2;
+            int val = cheak(nums, mid);
+
+            if(val>k){
+                low = mid+1;
+            }else{
+                high = mid-1;
+            }                    
+        }
+        return low;
+    }
+}
